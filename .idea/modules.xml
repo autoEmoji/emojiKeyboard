@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/emojiKeyboard.iml" filepath="$PROJECT_DIR$/emojiKeyboard.iml" />
+      <module fileurl="file://$PROJECT_DIR$/CustomKeyboard.iml" filepath="$PROJECT_DIR$/CustomKeyboard.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>
 </project>
+

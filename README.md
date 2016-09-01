@@ -1,2 +1,0 @@
-# emojiKeyboard
-the keyboard

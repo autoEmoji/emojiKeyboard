@@ -8,10 +8,6 @@ import android.media.AudioManager;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.InputConnection;
-import android.widget.Button;
-
-import java.util.LinkedList;
-import java.util.Queue;
 
 public class MyKeyboard extends InputMethodService
         implements KeyboardView.OnKeyboardActionListener{
@@ -21,20 +17,12 @@ public class MyKeyboard extends InputMethodService
 
     private boolean caps = false;
 
-    private Queue<Character> text;
-    private Button myButton;
-
     @Override
     public View onCreateInputView() {
         kv = (KeyboardView) getLayoutInflater().inflate(R.layout.keyboard, null);
         keyboard = new Keyboard(this, R.xml.qwerty);
         kv.setKeyboard(keyboard);
         kv.setOnKeyboardActionListener(this);
-
-        text = new LinkedList<Character>();
-
-        //myButton = (Button) rootView.findViewById(R.id.button_text);
-
         return kv;
     }
 
@@ -75,11 +63,9 @@ public class MyKeyboard extends InputMethodService
                 ic.deleteSurroundingText(1, 0);
                 break;
             case Keyboard.KEYCODE_SHIFT:
-
-
-                //caps = !caps;
-                //keyboard.setShifted(caps);
-                //kv.invalidateAllKeys();
+                caps = !caps;
+                keyboard.setShifted(caps);
+                kv.invalidateAllKeys();
                 break;
             case Keyboard.KEYCODE_DONE:
                 ic.sendKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_ENTER));
@@ -89,10 +75,6 @@ public class MyKeyboard extends InputMethodService
                 if(Character.isLetter(code) && caps) {
                     code = Character.toUpperCase(code);
                 }
-
-                text.add((char) code);
-                //myButton.setText("test");
-
                 ic.commitText(String.valueOf(code), 1);
         }
     }
